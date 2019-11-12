@@ -11,5 +11,7 @@
 |
 */
 
-Route::get('/hq', 'HqController@index');
-Route::get('/hq/criar', 'HqController@create');
+Route::get('/hq', 'HqController@index')->name('listar_quadrinhos');
+Route::get('/hq/criar', 'HqController@create')->name('form_criar_quadrinho');
+Route::post('/hq/criar', 'HqController@store');
+Route::delete('/hq/{id}', 'SeriesController@destroy');

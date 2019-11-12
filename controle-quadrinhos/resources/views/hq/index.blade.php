@@ -1,18 +1,30 @@
 @extends('layout')
 
 @section('cabecalho')
-Quadrinhos
+    Quadrinhos
 @endsection
 
 @section('conteudo')
+    @if(!empty($mensagem))
+        <div class="alert alert-success">
+            {{ $mensagem }}
+        </div>
+    @endif
 
-<a href="/hq/criar" class="btn btn-dark mb-2">Adicionar</a>
+    <a href="{{ route('form_criar_quadrinho') }}" class="btn btn-dark mb-2">Adicionar</a>
 
-<ul class="list-group">
-    @foreach($quadrinhos as $quadrinho)
-        <li class="list-group-item"><?= $quadrinho; ?></li>
-    @endforeach
-</ul>
+    <ul class="list-group">
+        @foreach($quadrinhos as $quadrinho)
+            <li class="list-group-item d-flex justify-content-between align-items-center">{{ $quadrinho->nome }}
+                <form method="post" action="/series/{{ $quadrinho->id }}"
+                      onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes( $quadrinho->nome )}}?')">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                </form>
+            </li>
+        @endforeach
+    </ul>
 
 @endsection
 

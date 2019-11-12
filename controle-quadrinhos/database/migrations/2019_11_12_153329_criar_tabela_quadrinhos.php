@@ -15,7 +15,7 @@ class CriarTabelaQuadrinhos extends Migration
     {
         Schema::create('quadrinhos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('nome');
             $table->string('airline');
             $table->timestamps();
         });
