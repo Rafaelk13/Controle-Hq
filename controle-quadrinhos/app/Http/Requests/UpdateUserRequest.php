@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class QuadrinhosFormRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class QuadrinhosFormRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,16 +24,7 @@ class QuadrinhosFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome' => 'required|min:3'
+            //
         ];
-    }
-
-    public function messages()
-    {
-        return [
-            'required' => 'O campo :attribute é obrigatótrio',
-            'nome.min' => 'O campo nome precisa ter pelo menos 2 caracteres'
-        ];
-
     }
 }

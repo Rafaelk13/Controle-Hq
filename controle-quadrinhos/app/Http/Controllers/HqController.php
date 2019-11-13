@@ -36,7 +36,7 @@ class HqController extends Controller
     public function destroy(Request $request)
     {
         Quadrinho::destroy($request->id);
-        $request->session()->flash('mensagem', 'Quadrinho removida com sucesso');
+        $request->session()->flash('mensagem', 'Quadrinho removido com sucesso');
 
         return redirect()->route('listar_quadrinhos');
 

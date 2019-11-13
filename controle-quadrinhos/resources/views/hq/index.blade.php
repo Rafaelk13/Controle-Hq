@@ -16,7 +16,7 @@
     <ul class="list-group">
         @foreach($quadrinhos as $quadrinho)
             <li class="list-group-item d-flex justify-content-between align-items-center">{{ $quadrinho->nome }}
-                <form method="post" action="/series/{{ $quadrinho->id }}"
+                <form method="post" action="/hq/{{ $quadrinho->id }}"
                       onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes( $quadrinho->nome )}}?')">
                     @csrf
                     @method('DELETE')
