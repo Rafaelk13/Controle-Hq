@@ -30,10 +30,8 @@ class HqController extends Controller
         $saga = $quadrinho->sagas()->create(['nome' => $request->nome_sagas]);
 
         for ($i = 1; $i <= $request->ed_por_saga; $i++) {
-            $saga->edicaos()->create(['numero' => $i]);
+            $saga->edicoes()->create(['numero' => $i]);
         }
-
-
 
         $request->session()->flash('mensagem', "Quadrinho {$quadrinho} criada com sucesso {$quadrinho->nome}");
 

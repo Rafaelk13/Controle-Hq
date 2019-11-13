@@ -16,9 +16,9 @@ class CreateEdicaosTable extends Migration
         Schema::create('edicaos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('numero');
-            $table->bigInteger('edicao_id')->unsigned();
+            $table->bigInteger('saga_id')->unsigned();
 
-            $table->foreign('edicao_id')
+            $table->foreign('saga_id')
                 ->references('id')
                 ->on('sagas');
             $table->timestamps();
