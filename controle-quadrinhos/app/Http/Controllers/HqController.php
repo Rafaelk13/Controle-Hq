@@ -26,7 +26,15 @@ class HqController extends Controller
 
     public function store(QuadrinhosFormRequest $request)
     {
-        $quadrinho = Quadrinho::create($request->all());
+        $quadrinho = Quadrinho::create(['nome' => $request->nome]);
+        $saga = $quadrinho->sagas()->create(['nome' => $request->nome_sagas]);
+
+        for ($i = 1; $i <= $request->ed_por_saga; $i++) {
+            $saga->edicaos()->create(['numero' => $i]);
+        }
+
+
+
         $request->session()->flash('mensagem', "Quadrinho {$quadrinho} criada com sucesso {$quadrinho->nome}");
 
         return redirect()->route('listar_quadrinhos');

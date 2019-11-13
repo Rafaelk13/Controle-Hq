@@ -10,4 +10,9 @@ class Quadrinho extends Model
 {
     protected $fillable = ['nome'];
 
+    public function Sagas()
+    {
+        return $this->hasMany(Saga::class);
+    }
+
 }
