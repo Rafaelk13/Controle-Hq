@@ -4,8 +4,12 @@
 namespace App\Http\Controllers;
 
 
+use App\Edicao;
 use App\Http\Requests\QuadrinhosFormRequest;
 use App\Quadrinho;
+use App\Saga;
+use App\Services\CriadorDeQuadrinho;
+use App\Services\RemovedorDeQuadrinho;
 use Illuminate\Http\Request;
 
 class HqController extends Controller
@@ -24,14 +28,9 @@ class HqController extends Controller
         return view('hq.create');
     }
 
-    public function store(QuadrinhosFormRequest $request)
+    public function store(QuadrinhosFormRequest $request, CriadorDeQuadrinho $criadorDeQuadrinho)
     {
-        $quadrinho = Quadrinho::create(['nome' => $request->nome]);
-        $saga = $quadrinho->sagas()->create(['nome' => $request->nome_sagas]);
-
-        for ($i = 1; $i <= $request->ed_por_saga; $i++) {
-            $saga->edicoes()->create(['numero' => $i]);
-        }
+        $quadrinho = $criadorDeQuadrinho->criarQuadrinho($request->nome, $request->nome_sagas , $request->ed_por_saga);
 
         $request->session()->flash('mensagem', "Quadrinho {$quadrinho} criada com sucesso {$quadrinho->nome}");
 
@@ -39,10 +38,10 @@ class HqController extends Controller
 
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request, RemovedorDeQuadrinho $removedorDeQuadrinho)
     {
-        Quadrinho::destroy($request->id);
-        $request->session()->flash('mensagem', 'Quadrinho removido com sucesso');
+        $nomeQuadrinho = $removedorDeQuadrinho->removerQuadrinho($request->id);
+        $request->session()->flash('mensagem', "Quadrinho $nomeQuadrinho removido com sucesso");
 
         return redirect()->route('listar_quadrinhos');
 
