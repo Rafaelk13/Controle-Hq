@@ -47,4 +47,12 @@ class HqController extends Controller
 
     }
 
+    public function editaNome(int $id, Request $request)
+    {
+        $novoNome = $request->nome;
+        $quadrinho = Quadrinho::find($id);
+        $quadrinho->nome = $novoNome;
+        $quadrinho->save();
+    }
+
 }
