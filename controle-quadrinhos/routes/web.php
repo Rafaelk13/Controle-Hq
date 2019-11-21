@@ -18,3 +18,4 @@ Route::delete('/hq/{id}', 'HqController@destroy');
 Route::post('/hq/{id}/editaNome', 'HqController@editaNome');
 
 Route::get('/hq/{quadrinhoId}/sagas', 'SagasController@index');
+Route::get('/sagas/{saga}/edicoes', 'EdicoesController@index');

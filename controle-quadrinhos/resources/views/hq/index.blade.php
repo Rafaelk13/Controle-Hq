@@ -45,7 +45,7 @@
             </li>
         @endforeach
     </ul>
-s
+
     <script>
         function toggleInput(quadrinhoId) {
             const nomeQuadrinhoEl = document.getElementById(`nome-quadrinho-${quadrinhoId}`);
