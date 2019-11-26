@@ -18,4 +18,12 @@ Route::delete('/hq/{id}', 'HqController@destroy');
 Route::post('/hq/{id}/editaNome', 'HqController@editaNome');
 
 Route::get('/hq/{quadrinhoId}/sagas', 'SagasController@index');
+
 Route::get('/sagas/{saga}/edicoes', 'EdicoesController@index');
+Route::post('/sagas/{saga}/edicoes/lido', 'EdicoesController@lido');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/entrar', 'EntrarController@index');

@@ -12,7 +12,7 @@
                     Saga - {{ $saga->nome }}
                 </a>
                 <span class="badge badge-secondary">
-                    0 / {{ $saga->edicoes->count() }}
+                    {{ $saga->getEdicoesLidas()->count() }} / {{ $saga->edicoes->count() }}
                 </span>
             </li>
         @endforeach
