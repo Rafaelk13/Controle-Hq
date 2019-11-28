@@ -14,6 +14,11 @@ use Illuminate\Http\Request;
 
 class HqController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(Request $request)
     {
         $quadrinhos = quadrinho::query()->orderBy('nome')->get();
